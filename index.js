@@ -1,14 +1,27 @@
 function newImage(url, left, bottom){
     let image = document.createElement('img')
     image.src = url
-    image.style.position = 'fixed'
-    image.style.left = left + 'px'
-    image.style.bottom = bottom + 'px'
     document.body.append(image)
     return image
 }
 
-newImage('assets/green-character.gif', 100, 250)
+function move(image, left, bottom){
+    image.style.position = 'fixed'
+
+
+    function moveToCoordinates(left, bottom){
+        image.style.left = left + 'px'
+        image.style.bottom = bottom + 'px'  
+    }
+
+    return {
+        to: moveToCoordinates
+    }
+}
+
+let greenCharacter = newImage('assets/green-character.gif', 100, 250)
+move(greenCharacter).to(300, 250)
+
 newImage('assets/tree.png', 200, 450)
 newImage('assets/pillar.png', 350, 250)
 newImage('assets/pine-tree.png', 450, 350)
@@ -43,9 +56,10 @@ function newInventory(){
     inventory.style.alignItems = 'center'
     inventory.style.justifyContent = 'space-evenly'
     inventory.style.border = '2px solid black'
-    inventory.style.backgroundColor = 'brown'
+    inventory.style.backgroundColor = 'saddlebrown'
     document.body.append(inventory)
     return inventory
 }
+
 
 const inventory = newInventory()
